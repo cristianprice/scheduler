@@ -1,61 +1,38 @@
+from kivymd.uix.screen import MDScreen
 from kivy.lang import Builder
 from kivy.properties import StringProperty
 
 from kivymd.app import MDApp
-from kivymd.uix.navigationrail import MDNavigationRailItem
-
-from common_app import CommonApp
-
-KV = """
-<CommonNavigationRailItem>
-
-    MDNavigationRailItemIcon:
-        icon: root.icon
-
-    MDNavigationRailItemLabel:
-        text: root.text
+from kivymd.uix.navigationbar import MDNavigationItem, MDNavigationBar
 
 
-MDBoxLayout:
 
-    MDNavigationRail:
-        id: rail
-
-        MDNavigationRailMenuButton:
-            icon: "menu"
-            on_release: app.open_menu(self)
-
-        MDNavigationRailFabButton:
-            icon: "home"
-
-        CommonNavigationRailItem:
-            icon: "folder-outline"
-            text: "Files"
-
-        CommonNavigationRailItem:
-            icon: "bookmark-outline"
-            text: "Bookmark"
-
-        CommonNavigationRailItem:
-            icon: "library-outline"
-            text: "Library"
-
-    MDScreen:
-        md_bg_color: self.theme_cls.secondaryContainerColor
-"""
-
-
-class CommonNavigationRailItem(MDNavigationRailItem):
+class MainNavigationItem(MDNavigationItem):
     text = StringProperty()
     icon = StringProperty()
 
+class AppScreen(MDScreen):
+    image_size = StringProperty()
 
-class Example(MDApp, CommonApp):
+class SchedulerApp(MDApp):
     def build(self):
-        return Builder.load_string(KV)
+        return Builder.load_file("navigation_bar.kv")
 
-    def disabled_widgets(self):
-        self.root.ids.rail.disabled = not self.root.ids.rail.disabled
+    def on_switch_tabs(
+        self,
+        bar: MDNavigationBar,
+        item: MDNavigationItem,
+        item_icon: str,
+        item_text: str,
+    ):
+        self.root.ids.screen_manager.current = item_text
+
+    def run_code(self,text):
+        print('Running', text)
+        eval(text)
+
+    def format_code(self, *args):
+        print(args)
 
 
-Example().run()
+SchedulerApp().run()

@@ -1,0 +1,50 @@
+#:include sandbox.kv
+
+<MainNavigationItem@MDNavigationItem>:
+    MDNavigationItemIcon:
+        icon: root.icon
+
+    MDNavigationItemLabel:
+        text: root.text
+
+<AppScreen@MDScreen>:
+    
+MDBoxLayout:
+    orientation: "vertical"
+    md_bg_color: self.theme_cls.backgroundColor
+
+    MDScreenManager:
+        id: screen_manager
+
+        AppScreen:
+            name: "Sandbox"
+            active: True
+
+            CodePanel:
+                id: code_panel
+                size_hint_y: 1.0
+
+        AppScreen:
+            name: "Scheduler"
+            image_size: "800"
+
+        AppScreen:
+            name: "Components"
+            image_size: "600"
+
+
+    MDNavigationBar:
+        id: main_rail
+        on_switch_tabs: app.on_switch_tabs(*args)
+
+        MainNavigationItem:
+            icon: "code-braces"
+            text: "Sandbox"
+
+        MainNavigationItem:
+            icon: "calendar-clock"
+            text: "Scheduler"
+
+        MainNavigationItem:
+            icon: "video-input-component"
+            text: "Components"
