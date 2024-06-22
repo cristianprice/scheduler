@@ -1,19 +1,27 @@
-asyncgui==0.6.2
-asynckivy==0.6.2
+appdirs==1.4.4
+asynckivy==0.6.1
+asyncgui==0.6.1
+build==1.2.1
 buildozer @ https://github.com/kivy/buildozer/archive/refs/heads/master.zip#sha256=ecb1f5022398e00994f7df0c30e9d9db44bd9129703433036b6fb4aa496ba3f5
 certifi==2024.6.2
 charset-normalizer==3.3.2
+colorama==0.4.6
 Cython==0.29.37
 docutils==0.21.2
 idna==3.7
+Jinja2==3.1.4
 Kivy==2.3.0
 Kivy-Garden==0.1.5
 kivymd @ https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip#sha256=16aac37c1f54ea0ba6970d478ee9fba286ff916fd0f30186cd96b44e577eb479
+MarkupSafe==2.1.5
 materialyoucolor==2.0.9
 packaging==24.1
 pexpect==4.9.0
 pillow==10.3.0
 ptyprocess==0.7.0
 Pygments==2.18.0
+pyproject_hooks==1.1.0
 requests==2.32.3
+sh==1.14.3
+toml==0.10.2
 urllib3==2.2.2
