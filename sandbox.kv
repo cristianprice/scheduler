@@ -6,16 +6,17 @@
 
     CodeInput:
         id: code_input
-        size_hint: 1, 1
+        size_hint: 1, .9
         font_size: 20
         multiline: True
         background_color: root.theme_cls.backgroundColor
         text: 'print("Hello, World!")'
-    
+
     MDBoxLayout:
         orientation: 'horizontal'
         padding: 10
         spacing: 10
+        size_hint: 1, .1
 
         MDButton:
             on_press: app.run_code(root.ids.code_input.text)
@@ -32,21 +33,3 @@
                 icon: "format-align-right"
             MDButtonText:
                 text: "Format"
-
-    MDLabel:
-        id: output_label
-        text: ''
-        size_hint: 1, 0.3
-        font_size: 20
-        text_size: self.size
-        halign: 'left'
-        valign: 'top'
-        padding: 10, 10
-        markup: True
-        color: 0, 0, 0, 1
-        canvas.before:
-            Color:
-                rgba: 1, 1, 1, 1
-            Rectangle:
-                pos: self.pos
-                size: self.size
