@@ -1,13 +1,22 @@
-from kivymd.uix.screen import MDScreen
-from kivy.lang import Builder
-from kivy.properties import StringProperty
 
-from kivymd.app import MDApp
-from kivymd.uix.navigationbar import MDNavigationItem, MDNavigationBar
-from gui_dialogs import show_info_dialog
-
-import io
 import contextlib
+import io
+from gui_dialogs import show_info_dialog
+from kivymd.uix.navigationbar import MDNavigationItem, MDNavigationBar
+from kivymd.app import MDApp
+from kivy.properties import StringProperty
+from kivy.lang import Builder
+from kivymd.uix.screen import MDScreen
+import sys
+from kivy import platform
+
+if platform == "android":
+        from android.permissions import request_permissions, Permission  # pylint: disable=import-error # type: ignore
+        request_permissions([Permission.READ_EXTERNAL_STORAGE,
+                            Permission.WRITE_EXTERNAL_STORAGE,
+                            Permission.INTERNET,
+                            Permission.ACCESS_NETWORK_STATE])
+
 
 
 class MainNavigationItem(MDNavigationItem):
@@ -51,4 +60,6 @@ class SchedulerApp(MDApp):
         print(args)
 
 
-SchedulerApp().run()
+if __name__ == "__main__":
+    app = SchedulerApp()
+    app.run()

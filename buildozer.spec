@@ -6,13 +6,13 @@
 [app]
 
 # (str) Title of your application
-title = Scheduler
+title = scheduler
 
 # (str) Package name
 package.name = scheduler
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.price.criss
+package.domain = org.scheduler
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -42,7 +42,13 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,https://github.com/kivymd/KivyMD/archive/master.zip,
+requirements = python3,
+    pygments,
+    android,
+    Cython==0.29.10,
+    kivy,
+    pillow,
+    https://github.com/kivymd/KivyMD/archive/master.zip,
     materialyoucolor,
     exceptiongroup,
     asynckivy==0.6.1,
@@ -107,13 +113,17 @@ fullscreen = 0
 
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions.html for all the supported syntaxes and properties)
-#android.permissions = android.permission.INTERNET, (name=android.permission.WRITE_EXTERNAL_STORAGE;maxSdkVersion=18)
+
+android.permissions = android.permission.INTERNET, 
+                        android.permission.READ_EXTERNAL_STORAGE,
+                        ndroid.permission.WRITE_EXTERNAL_STORAGE,
+                        android.permission.ACCESS_NETWORK_STATE
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 31
+android.api = 33
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21
@@ -282,7 +292,7 @@ fullscreen = 0
 #android.uses_library =
 
 # (str) Android logcat filters to use
-#android.logcat_filters = *:S python:D
+android.logcat_filters = *:S python:D
 
 # (bool) Android logcat only display log for activity's pid
 #android.logcat_pid_only = False
